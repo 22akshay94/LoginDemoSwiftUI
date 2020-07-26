@@ -27,9 +27,11 @@ struct StringConstants {
     static let emailPlaceholder: String = "Email"
     static let passwordPlaceholder = "Password"
     
-    static let userNameCheck: String = "Akshay"
+    static let userNameCheck: String = "akshay"
     static let emailCheck: String = "akshay.yerneni@hotmail.com"
     static let passwordCheck: String = "123456"
+    static let errorMessage: String = "Username/Email/Password incorrect"
+    static let loginSuccessMessage: String = "Login Sucessful!!"
 }
 
 struct AppColors {

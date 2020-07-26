@@ -27,15 +27,33 @@ struct LoginView: View {
                 PasswordSecureField(password: $password)
                 
                 if authDidFail {
-                    
+                    Text(StringConstants.errorMessage)
+                        .padding()
+                        .padding(.bottom, AppConstants.setPadding(.small))
+                        .foregroundColor(Color.red)
                 }
                 
                 Button(action: {
-                    
+                    if self.userName == StringConstants.userNameCheck, self.email == StringConstants.emailCheck, self.password == StringConstants.passwordCheck {
+                        self.authDidSucceed = true
+                        self.authDidFail = false
+                    } else {
+                        self.authDidSucceed = false
+                        self.authDidFail = true
+                    }
                 }) {
                     LoginButtonContent()
                 }
             }.padding()
+            
+            if authDidSucceed {
+                Text(StringConstants.loginSuccessMessage)
+                    .font(.headline)
+                    .frame(width: AppConstants.userImageWidth, height: AppConstants.userImageHeight/2, alignment: .center)
+                    .background(Color.green)
+                    .cornerRadius(AppConstants.setPadding(.small))
+                    .animation(.easeInOut)
+            }
         }
     }
 }
@@ -87,6 +105,8 @@ struct UsernameTextField: View {
             .padding()
             .background(AppColors.lightGrayColor)
             .padding(.bottom, AppConstants.setPadding(.small))
+            .keyboardType(.alphabet)
+            .autocapitalization(.none)
     }
 }
 
@@ -99,6 +119,7 @@ struct EmailTextField: View {
             .padding()
             .background(AppColors.lightGrayColor)
             .padding(.bottom, AppConstants.setPadding(.small))
+            .keyboardType(.emailAddress)
     }
 }
 
@@ -111,5 +132,6 @@ struct PasswordSecureField: View {
             .padding()
             .background(AppColors.lightGrayColor)
             .padding(.bottom, AppConstants.setPadding(.small))
+            .keyboardType(.alphabet)
     }
 }
